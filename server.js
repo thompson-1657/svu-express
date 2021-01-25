@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const PORT = 3300
 
+//api for info for characters
 const characters = [
     {
         name: 'Olivia Benson',
@@ -30,8 +31,20 @@ app.get('/', (req, res) => {
     res.send('“The world is changing. We need new rules.” -Olivia Benson')
 })
 
+//api/characters - show all character data
 app.get('/api/characters', (req, res) => {
     res.json(characters)
+})
+
+// /api/characters/:routeName
+app.get('/api/characters/:routeName', (req, res) => {
+    const targetCharacter = req.params.routeName
+    const character = characters.find(character => {
+
+        return character.routeName === targetCharacter
+    })
+
+    res.json(character)
 })
 
 app.listen(PORT, () => {
