@@ -2,6 +2,10 @@ const express = require('express')
 const app = express()
 const PORT = 3300
 
+//used to consume json data in routes (copy and paste for future projects)
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+
 //api for info for characters
 const characters = [
     {
@@ -45,6 +49,14 @@ app.get('/api/characters/:routeName', (req, res) => {
     })
 
     res.json(character)
+})
+
+app.post('/api/characters/add', (req, res) => {
+    const newCharacter = req.body
+    newCharacter.routeName = newCharacter.name.replace(/ /g, '').toLowerCase()
+    characters.push(newCharacter)
+    console.log(characters);
+    res.status(200).send
 })
 
 app.listen(PORT, () => {
