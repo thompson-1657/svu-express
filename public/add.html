@@ -49,56 +49,35 @@
 
     <div class="container">
 
-        <h1 class="text-center">Welcome to SVU Express!</h1>
+        <h1 class="text-center">Add a new Character</h1>
 
         <form>
             <div class="mb-3">
-                <label for="search" class="form-label">Search a character</label>
-                <input type="text" class="form-control" id="search">
+                <label for="name" class="form-label">Name:</label>
+                <input type="text" class="form-control" id="name" name="name">
             </div>
+            <div class="mb-3">
+                <label for="age" class="form-label">Age:</label>
+                <input type="text" class="form-control" id="age" name="age">
+            </div>
+            <div class="mb-3">
+                <label for="avatar" class="form-label">Avatar:</label>
+                <input type="text" class="form-control" id="avatar" name="avatar">
+                <div id="avatarHelp" class="form-text">Add a URL for character avatar</div>
+            </div>
+            <div class="mb-3">
+                <label for="role" class="form-label">Role:</label>
+                <input type="text" class="form-control" id="role" name="role">
+            </div>
+
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 
 
-    <div class="row">
-        <div id="avatar-container" class="col-md">
-            <img id="avatar"></img>
-        </div>
-        <div id="character-data" class="col-md">
-            <p>Name: <span id="name"></span></p>
-            <p>Age: <span id="age"></span></p>
-            <p>Role: <span id="role"></span></p>
-        </div>
-    </div>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        const form = $('form')
-        const searchInput = $('#search')
-        const avatar = $('#avatar')
-        const name = $('#name')
-        const age = $('#age')
-        const role = $('#role')
-
-
-        form.on('submit', e => {
-            e.preventDefault()
-            const searchTerm = searchInput.val()
-            $.ajax(`/api/characters/${searchTerm}`)
-                .then(characterData => {
-
-                    avatar.attr('src', characterData.avatar)
-                    name.text(characterData.name)
-                    age.text(characterData.age)
-                    role.text(characterData.role)
-                })
-        })
-
-
-
-
-    </script>
 </body>
 
 </html>
